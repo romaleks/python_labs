@@ -8,7 +8,7 @@ age = int(input('Возраст: '))
 print(f'Привет, {name}! Через год тебе будет {age+1}.')
 ```
 
-![Картинка 1](./images/lab01/01.png)
+![Картинка 1](../../images/lab01/01.png)
 
 ### Задание 2
 
@@ -20,7 +20,7 @@ b = float(input2.replace(',', '.'))
 print(f'sum={round(a+b, 2)}; avg={round((a+b)/2, 2)}')
 ```
 
-![Картинка 2](./images/lab01/02.png)
+![Картинка 2](../../images/lab01/02.png)
 
 ### Задание 3
 
@@ -36,7 +36,7 @@ print(f'НДС: {format(vat_amount, '.2f')} ₽')
 print(f'Итого к оплате: {format(total, '.2f')} ₽')
 ```
 
-![Картинка 3](./images/lab01/03.png)
+![Картинка 3](../../images/lab01/03.png)
 
 ### Задание 4
 
@@ -45,7 +45,7 @@ minutes = int(input('Минуты: '))
 print(f'{minutes//60}:{minutes%60:02d}')
 ```
 
-![Картинка 4](./images/lab01/04.png)
+![Картинка 4](../../images/lab01/04.png)
 
 ### Задание 5
 
@@ -56,7 +56,7 @@ print(f'Инициалы: {names[0][0]}{names[1][0]}{names[2][0]}.')
 print(f'Длина (символов): {sum(len(name) for name in names) + 2}')
 ```
 
-![Картинка 5](./images/lab01/05.png)
+![Картинка 5](../../images/lab01/05.png)
 
 ### Задание 6
 
@@ -73,7 +73,7 @@ for i in range(n):
 print(och, zaoch)
 ```
 
-![Картинка 6](./images/lab01/06.png)
+![Картинка 6](../../images/lab01/06.png)
 
 ### Задание 7
 
@@ -100,4 +100,4 @@ for i, symbol in enumerate(s):
 print(ans)
 ```
 
-![Картинка 7](./images/lab01/07.png)
+![Картинка 7](../../images/lab01/07.png)

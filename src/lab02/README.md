@@ -21,7 +21,7 @@ def flatten(mat):
   return arr
 ```
 
-![Картинка 1](./images/lab02/01.png)
+![Картинка 1](../../images/lab02/01.png)
 
 ### Задание 2
 
@@ -53,7 +53,7 @@ def col_sums(mat):
   return new_mat
 ```
 
-![Картинка 2](./images/lab02/02.png)
+![Картинка 2](../../images/lab02/02.png)
 
 ### Задание 2
 
@@ -117,4 +117,4 @@ def format_record(rec: tuple) -> str:
   return f"{formatted_fio}, гр. {group_clean}, GPA {formatted_gpa}"
 ```
 
-![Картинка 3](./images/lab02/03.png)
+![Картинка 3](../../images/lab02/03.png)
