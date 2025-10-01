@@ -38,7 +38,8 @@ def format_record(rec: tuple) -> str:
   
   # Обработка ФИО
   parts = fio_clean.split()
-  surname = parts[0]
+  surname = parts[0].lower()
+  surname = surname[0].upper() + surname[1:]
   
   # Формирование инициалов
   initials = []
