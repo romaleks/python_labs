@@ -1,13 +1,13 @@
-def min_max(nums):
+def min_max(nums: list[float | int]) -> tuple[float | int, float | int]:
   if nums:
     return (min(nums), max(nums))
   else:
     return ValueError
 
-def unique_sorted(nums):
+def unique_sorted(nums: list[float | int]) -> list[float | int]:
   return sorted(set(nums))
 
-def flatten(mat):
+def flatten(mat: list[list | tuple]) -> list:
   arr = []
   for x in mat:
     if not isinstance(x, list) and not isinstance(x, tuple):

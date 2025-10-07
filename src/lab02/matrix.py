@@ -1,4 +1,4 @@
-def transpose(mat):
+def transpose(mat: list[list[float | int]]) -> list[list]:
   if len(mat) == 0: return []
   new_mat = [[] for x in mat[0]]
   for row in mat:
@@ -8,21 +8,18 @@ def transpose(mat):
       new_mat[i].append(x)
   return new_mat
 
-def row_sums(mat):
+def row_sums(mat: list[list[float | int]]) -> list[float]:
   for row in mat:
     if len(row) != len(mat[0]):
       return ValueError
   return [sum(row) for row in mat]
 
-def col_sums(mat):
-  if len(mat) == 0: return []
-  new_mat = [0 for x in mat[0]]
-  for row in mat:
-    if len(row) != len(new_mat):
-      return ValueError
-    for i, x in enumerate(row):
-      new_mat[i] += x
-  return new_mat
+def col_sums(mat: list[list[float | int]]) -> list[float]:
+  new_mat = transpose(mat)
+  if new_mat != ValueError:
+    return row_sums(new_mat)
+  else:
+    return new_mat
 
 arr1 = [[[1, 2, 3]], [[1], [2], [3]], [[1, 2], [3, 4]], [], [[1, 2], [3]]]
 print('transpose:')
