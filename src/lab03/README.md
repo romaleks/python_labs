@@ -36,10 +36,8 @@ def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
 
 ```python
 import sys
-import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from lib.text import normalize, tokenize, count_freq, top_n
+from src.lib.text import normalize, tokenize, count_freq, top_n
 
 # Чтение всего ввода из stdin
 text = sys.stdin.readline()

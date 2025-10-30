@@ -1,8 +1,6 @@
 import sys
-import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from lib.text import normalize, tokenize, count_freq, top_n
+from src.lib.text import normalize, tokenize, count_freq, top_n
 
 # Чтение всего ввода из stdin
 text = sys.stdin.readline()
