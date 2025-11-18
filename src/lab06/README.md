@@ -119,49 +119,85 @@ if __name__ == "__main__":
 ### Задание B 
 
 ```python
+import argparse
+import sys
 from pathlib import Path
-import csv
-from openpyxl import Workbook
 
-def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
+from src.lib.json_csv import json_to_csv, csv_to_json
+from src.lib.csv_xlsx import csv_to_xlsx
+
+def main() -> None:
     """
-    Конвертирует CSV в XLSX.
-    Первая строка CSV — заголовок.
-    Лист называется "Sheet1".
-    Колонки — автоширина по длине текста (не менее 8 символов).
-    Кодировка: UTF-8.
+    CLI-утилита для конвертации файлов между форматами JSON, CSV и XLSX.
+
+    Подкоманды:
+        json2csv --in <json> --out <csv>
+        csv2json --in <csv> --out <json>
+        csv2xlsx --in <csv> --out <xlsx>
+
+    Используются функции из lab05.
     """
 
-    csv_file = Path(csv_path)
-    if not csv_file.exists():
-        raise FileNotFoundError(f"CSV-файл '{csv_path}' не найден.")
+    parser = argparse.ArgumentParser(description="Конвертер файлов: JSON↔CSV, CSV→XLSX")
+    subparsers = parser.add_subparsers(dest="command", required=True)
 
-    # Читаем CSV
-    with csv_file.open(encoding="utf-8") as f:
-        reader = list(csv.reader(f))
-        if not reader:
-            raise ValueError("Пустой CSV-файл")
+    # -----------------------
+    # json2csv
+    # -----------------------
+    p_json2csv = subparsers.add_parser("json2csv", help="Преобразовать JSON → CSV")
+    p_json2csv.add_argument("--in", dest="input", required=True, help="Входной JSON-файл")
+    p_json2csv.add_argument("--out", dest="output", required=True, help="Выходной CSV-файл")
 
-    # Создаём Excel-файл
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "Sheet1"
+    # -----------------------
+    # csv2json
+    # -----------------------
+    p_csv2json = subparsers.add_parser(
+        "csv2json", help="Преобразовать CSV → JSON"
+    )
+    p_csv2json.add_argument("--in", dest="input", required=True, help="Входной CSV-файл")
+    p_csv2json.add_argument("--out", dest="output", required=True, help="Выходной JSON-файл")
 
-    # Добавляем строки
-    for row in reader:
-        ws.append(row)
+    # -----------------------
+    # csv2xlsx
+    # -----------------------
+    p_csv2xlsx = subparsers.add_parser(
+        "csv2xlsx", help="Преобразовать CSV → XLSX"
+    )
+    p_csv2xlsx.add_argument("--in", dest="input", required=True, help="Входной CSV-файл")
+    p_csv2xlsx.add_argument("--out", dest="output", required=True, help="Выходной XLSX-файл")
 
-    # Автоширина колонок (минимум 8)
-    for col in ws.columns:
-        max_len = 0
-        col_letter = col[0].column_letter  # A, B, C...
-        for cell in col:
-            val = str(cell.value) if cell.value is not None else ""
-            max_len = max(max_len, len(val))
-        ws.column_dimensions[col_letter].width = max(max_len + 2, 8)
+    args = parser.parse_args()
 
-    # Сохраняем результат
-    wb.save(xlsx_path)
+    # -----------------------
+    # Выполнение команд
+    # -----------------------
+    in_path = Path(args.input)
+    out_path = Path(args.output)
+
+    try:
+        if args.command == "json2csv":
+            json_to_csv(in_path, out_path)
+            print(f"Готово: {in_path} → {out_path}")
+
+        elif args.command == "csv2json":
+            csv_to_json(in_path, out_path)
+            print(f"Готово: {in_path} → {out_path}")
+
+        elif args.command == "csv2xlsx":
+            csv_to_xlsx(in_path, out_path)
+            print(f"Готово: {in_path} → {out_path}")
+
+    except FileNotFoundError:
+        print(f"Ошибка: файл '{in_path}' не найден.", file=sys.stderr)
+        sys.exit(1)
+
+    except ValueError as e:
+        print(f"Ошибка данных: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
 ```
 
 ![Картинка 3](../../images/lab06/03.png)
