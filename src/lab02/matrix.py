@@ -1,35 +1,39 @@
 def transpose(mat: list[list[float | int]]) -> list[list]:
-  if len(mat) == 0: return []
-  new_mat = [[] for x in mat[0]]
-  for row in mat:
-    if len(row) != len(new_mat):
-      return ValueError
-    for i, x in enumerate(row):
-      new_mat[i].append(x)
-  return new_mat
-
-def row_sums(mat: list[list[float | int]]) -> list[float]:
-  for row in mat:
-    if len(row) != len(mat[0]):
-      return ValueError
-  return [sum(row) for row in mat]
-
-def col_sums(mat: list[list[float | int]]) -> list[float]:
-  new_mat = transpose(mat)
-  if new_mat != ValueError:
-    return row_sums(new_mat)
-  else:
+    if len(mat) == 0:
+        return []
+    new_mat = [[] for x in mat[0]]
+    for row in mat:
+        if len(row) != len(new_mat):
+            return ValueError
+        for i, x in enumerate(row):
+            new_mat[i].append(x)
     return new_mat
 
+
+def row_sums(mat: list[list[float | int]]) -> list[float]:
+    for row in mat:
+        if len(row) != len(mat[0]):
+            return ValueError
+    return [sum(row) for row in mat]
+
+
+def col_sums(mat: list[list[float | int]]) -> list[float]:
+    new_mat = transpose(mat)
+    if new_mat != ValueError:
+        return row_sums(new_mat)
+    else:
+        return new_mat
+
+
 arr1 = [[[1, 2, 3]], [[1], [2], [3]], [[1, 2], [3, 4]], [], [[1, 2], [3]]]
-print('transpose:')
+print("transpose:")
 for x in arr1:
-  print(f'{x} -> {transpose(x)}')
+    print(f"{x} -> {transpose(x)}")
 arr2 = [[[1, 2, 3], [4, 5, 6]], [[-1, 1], [10, -10]], [[0, 0], [0, 0]], [[1, 2], [3]]]
-print('row_sums:')
+print("row_sums:")
 for x in arr2:
-  print(f'{x} -> {row_sums(x)}')
+    print(f"{x} -> {row_sums(x)}")
 arr3 = [[[1, 2, 3], [4, 5, 6]], [[-1, 1], [10, -10]], [[0, 0], [0, 0]], [[1, 2], [3]]]
-print('col_sums:')
+print("col_sums:")
 for x in arr3:
-  print(f'{x} -> {col_sums(x)}')
+    print(f"{x} -> {col_sums(x)}")

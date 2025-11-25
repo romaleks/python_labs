@@ -1,0 +1,13 @@
+[project]
+name = "python-labs"
+version = "0.1.0"
+description = "Labs project"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "."
+]
+testpaths = [
+    "tests"
+]

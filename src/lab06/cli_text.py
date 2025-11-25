@@ -6,11 +6,11 @@ from src.lib.text import normalize, tokenize, count_freq, top_n
 def cmd_cat(path: Path, number_lines: bool) -> None:
     """
     Выводит содержимое текстового файла построчно.
-    
+
     Параметры:
         path (str): путь к файлу.
         number_lines (bool): если True — добавляет нумерацию строк.
-    
+
     Исключения:
         FileNotFoundError — если файл не существует.
     """
@@ -63,7 +63,7 @@ def main():
     Создаёт парсер argparse, добавляет подкоманды:
         - cat   — вывод файла
         - stats — статистика слов
-    
+
     Вызывает соответствующие функции в зависимости от аргументов.
     """
 
@@ -75,11 +75,7 @@ def main():
     # ---------------------- CAT ------------------------
     cat_p = subparsers.add_parser("cat", help="Вывести содержимое файла")
     cat_p.add_argument("--input", required=True, help="Путь к файлу")
-    cat_p.add_argument(
-        "-n",
-        action="store_true",
-        help="Нумеровать строки"
-    )
+    cat_p.add_argument("-n", action="store_true", help="Нумеровать строки")
 
     # ---------------------- STATS ----------------------
     stats_p = subparsers.add_parser("stats", help="Частотный анализ текста")

@@ -5,6 +5,7 @@ from pathlib import Path
 from src.lib.json_csv import json_to_csv, csv_to_json
 from src.lib.csv_xlsx import csv_to_xlsx
 
+
 def main() -> None:
     """
     CLI-утилита для конвертации файлов между форматами JSON, CSV и XLSX.
@@ -24,26 +25,34 @@ def main() -> None:
     # json2csv
     # -----------------------
     p_json2csv = subparsers.add_parser("json2csv", help="Преобразовать JSON → CSV")
-    p_json2csv.add_argument("--in", dest="input", required=True, help="Входной JSON-файл")
-    p_json2csv.add_argument("--out", dest="output", required=True, help="Выходной CSV-файл")
+    p_json2csv.add_argument(
+        "--in", dest="input", required=True, help="Входной JSON-файл"
+    )
+    p_json2csv.add_argument(
+        "--out", dest="output", required=True, help="Выходной CSV-файл"
+    )
 
     # -----------------------
     # csv2json
     # -----------------------
-    p_csv2json = subparsers.add_parser(
-        "csv2json", help="Преобразовать CSV → JSON"
+    p_csv2json = subparsers.add_parser("csv2json", help="Преобразовать CSV → JSON")
+    p_csv2json.add_argument(
+        "--in", dest="input", required=True, help="Входной CSV-файл"
     )
-    p_csv2json.add_argument("--in", dest="input", required=True, help="Входной CSV-файл")
-    p_csv2json.add_argument("--out", dest="output", required=True, help="Выходной JSON-файл")
+    p_csv2json.add_argument(
+        "--out", dest="output", required=True, help="Выходной JSON-файл"
+    )
 
     # -----------------------
     # csv2xlsx
     # -----------------------
-    p_csv2xlsx = subparsers.add_parser(
-        "csv2xlsx", help="Преобразовать CSV → XLSX"
+    p_csv2xlsx = subparsers.add_parser("csv2xlsx", help="Преобразовать CSV → XLSX")
+    p_csv2xlsx.add_argument(
+        "--in", dest="input", required=True, help="Входной CSV-файл"
     )
-    p_csv2xlsx.add_argument("--in", dest="input", required=True, help="Входной CSV-файл")
-    p_csv2xlsx.add_argument("--out", dest="output", required=True, help="Выходной XLSX-файл")
+    p_csv2xlsx.add_argument(
+        "--out", dest="output", required=True, help="Выходной XLSX-файл"
+    )
 
     args = parser.parse_args()
 

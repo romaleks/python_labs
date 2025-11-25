@@ -24,12 +24,29 @@ from pathlib import Path
 from src.lib.io_txt_csv import read_text, write_csv
 from src.lib.text import normalize, tokenize, count_freq, top_n
 
+
 def main() -> None:
     """Точка входа в программу."""
-    parser = argparse.ArgumentParser(description="Создание отчёта частот слов из текстового файла.")
-    parser.add_argument("--in", dest="input_path", default="data/lab04/input.txt", help="входной текстовый файл (по умолчанию data/input.txt)")
-    parser.add_argument("--out", dest="output_path", default="data/lab04/report.csv", help="файл для сохранения отчёта (по умолчанию data/report.csv)")
-    parser.add_argument("--encoding", default="utf-8", help="кодировка входного файла (по умолчанию utf-8, можно cp1251 и др.)")
+    parser = argparse.ArgumentParser(
+        description="Создание отчёта частот слов из текстового файла."
+    )
+    parser.add_argument(
+        "--in",
+        dest="input_path",
+        default="data/lab04/input.txt",
+        help="входной текстовый файл (по умолчанию data/input.txt)",
+    )
+    parser.add_argument(
+        "--out",
+        dest="output_path",
+        default="data/lab04/report.csv",
+        help="файл для сохранения отчёта (по умолчанию data/report.csv)",
+    )
+    parser.add_argument(
+        "--encoding",
+        default="utf-8",
+        help="кодировка входного файла (по умолчанию utf-8, можно cp1251 и др.)",
+    )
 
     args = parser.parse_args()
     input_path = Path(args.input_path)
@@ -44,7 +61,10 @@ def main() -> None:
     try:
         text = read_text(input_path, encoding=args.encoding)
     except UnicodeDecodeError:
-        print(f"Ошибка: не удалось прочитать '{input_path}' в кодировке {args.encoding}.", file=sys.stderr)
+        print(
+            f"Ошибка: не удалось прочитать '{input_path}' в кодировке {args.encoding}.",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     freq = count_freq(tokenize(normalize(text)))
