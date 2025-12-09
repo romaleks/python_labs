@@ -22,6 +22,8 @@ class Student:
 
     def __post_init__(self):
         # Проверка формата даты
+        self.gpa = float(self.gpa)
+        
         try:
             datetime.strptime(self.birthdate, "%Y-%m-%d")
         except ValueError:
